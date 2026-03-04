@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { generateOracleReading } from "@/lib/oracle/generate-reading";
 import { createClient } from "@/lib/supabase/server";
 
-const DAILY_FREE_LIMIT = 3;
+const DAILY_FREE_LIMIT = 100;
 
 const CLARIFICATION_QUESTIONS = [
   "Before I answer, what outcome are you most afraid of in this decision?",
@@ -74,7 +74,7 @@ export async function askOracle(formData: FormData) {
 
   if ((todayCount ?? 0) >= DAILY_FREE_LIMIT) {
     redirect(
-      "/oracle?error=Daily+limit+reached.+You+can+ask+up+to+3+free+readings+per+day",
+      "/oracle?error=Daily+limit+reached.+You+can+ask+up+to+10+free+readings+per+day",
     );
   }
 
